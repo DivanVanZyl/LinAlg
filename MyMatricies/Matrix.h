@@ -1,8 +1,9 @@
 #pragma once
 #include<vector>
+template<typename T>
 class Matrix
 {
-	std::vector<std::vector<double>> _m;
+	std::vector<std::vector<T>> _m;
 	int _rows;
 	int _columns;
 
@@ -14,7 +15,7 @@ public:
 		_columns = 0;
 	}
 
-	Matrix(std::vector<std::vector<double>> a)
+	Matrix(std::vector<std::vector<T>> a)
 	{
 		_rows = 0;
 		_columns = 0;
@@ -33,17 +34,17 @@ public:
 	int rowCount() { return _rows; }
 	int colCount() { return _columns; }
 
-	double setElement(int row, int col, double val)
+	T setElement(int row, int col, T val)
 	{
 		return _m[row][col] = val;
 	}
 
-	double getElement(int row, int col)
+	T getElement(int row, int col)
 	{
 		return _m[row][col];
 	}
 
-	std::vector<std::vector<double>> getVector()
+	std::vector<std::vector<T>> getVector()
 	{
 		return _m;
 	}

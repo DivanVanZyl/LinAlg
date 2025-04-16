@@ -17,10 +17,10 @@ int main()
 		{ 0, 0, 0},
 		{ 0, 0, 0 } };;
 	//add
-	Matrix a = Matrix(v1);
-	Matrix b = Matrix(v2);
+	auto a = Matrix<double>(v1);
+	auto b = Matrix<double>(v2);
 
-	Matrix x = a + b;
+	Matrix<double> x = a + b;
 
 	std::cout << "A" << std::endl;
 	for (auto&& i : a.getVector())
