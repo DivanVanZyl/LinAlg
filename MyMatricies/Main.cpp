@@ -10,15 +10,11 @@ int COL_COUNT = 3;
 
 int main()
 {
-	std::vector<std::vector<double>> v1{ {1, 0, 1}, { 0, 1, 1 }, { 1, 0, 1 } };
-	std::vector<std::vector<double>> v2{ {1, 1, 1}, { 1, 1, 1 }, { 1, 1, 1 } };
-	std::vector<std::vector<int>> v3{
-		{0, 0, 0},
-		{ 0, 0, 0},
-		{ 0, 0, 0 } };;
+	std::vector<std::vector<double>> A{ {1, 0, 1}, { 0, 1, 1 }, { 1, 0, 1 } };
+	std::vector<std::vector<double>> B{ {1, 1}, { 1, 1 }, { 1, 1 } };
 	//add
-	auto a = Matrix<double>(v1);
-	auto b = Matrix<double>(v2);
+	auto a = Matrix<double>(A);
+	auto b = Matrix<double>(B);
 
 	Matrix<double> x = a + b;
 

@@ -29,6 +29,8 @@ public:
 			_rows++;
 		}
 		_columns = _columns / _rows;
+		std::cout << "This matrix has: " << _rows;
+		std::cout << " rows and " << _columns << " columns.";
 	}
 
 	int rowCount() { return _rows; }
@@ -64,7 +66,10 @@ public:
 			}
 			return temp;
 		}
-		return Matrix();
+		else
+		{
+			return Matrix();
+		}
 	}
 
 	//can multiply
