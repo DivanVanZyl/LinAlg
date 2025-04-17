@@ -17,20 +17,36 @@ public:
 
 	Matrix(std::vector<std::vector<T>> a)
 	{
-		_rows = 0;
-		_columns = 0;
-		_m = a;
+		//Determine max rows/columns
+		int tmpCol = 0;
 		for (auto&& i : a)
 		{
 			for (auto&& j : i)
 			{
-				_columns++;
+				tmpCol++;
 			}
+			if (tmpCol > _columns) { _columns = tmpCol; }
+			tmpCol = 0;
 			_rows++;
 		}
-		_columns = _columns / _rows;
-		std::cout << "This matrix has: " << _rows;
-		std::cout << " rows and " << _columns << " columns.";
+
+		_m = std::vector < std::vector<T>>(_rows, std::vector<T>(_columns));
+
+		//Build matrix based on input and max rows/columns
+		for (int i = 0; i < _rows; i++)
+		{
+			for (int j = 0;j < _columns;j++)
+			{
+				if (j < a[i].size())
+				{
+					_m[i][j] = a[i][j];
+				}
+				else
+				{
+					_m[i][j] = 0;
+				}
+			}
+		}
 	}
 
 	int rowCount() { return _rows; }
@@ -82,8 +98,4 @@ public:
 	{
 		return a.colCount() == b.colCount() and a.rowCount() == b.rowCount();
 	}
-
-	//multiply
-
-
 };

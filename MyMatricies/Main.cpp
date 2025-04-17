@@ -2,21 +2,20 @@
 //
 
 #include <iostream>
-#include<vector>
+#include <vector>
 #include "Matrix.h"
 
-int ROW_COUNT = 3;
-int COL_COUNT = 3;
-
-int main()
+void addition()
 {
-	std::vector<std::vector<double>> A{ {1, 0, 1}, { 0, 1, 1 }, { 1, 0, 1 } };
-	std::vector<std::vector<double>> B{ {1, 1}, { 1, 1 }, { 1, 1 } };
+	std::vector<std::vector<double>> A{ {1, 0, 1}, { 0, 1, 1 }, { 1, 0, 0 } };
+	std::vector<std::vector<double>> B{ {1, 1}, { 1, 1,1 }, { 1, 1 } };
 	//add
 	auto a = Matrix<double>(A);
 	auto b = Matrix<double>(B);
 
 	Matrix<double> x = a + b;
+
+	std::cout << "X = A + B" << std::endl;
 
 	std::cout << "A" << std::endl;
 	for (auto&& i : a.getVector())
@@ -51,4 +50,9 @@ int main()
 		std::cout << std::endl;
 	}
 	std::cout << std::endl << std::endl;
+}
+
+int main()
+{
+	addition();
 }
