@@ -32,10 +32,10 @@ public:
 
 		_m = std::vector < std::vector<T>>(_rows, std::vector<T>(_columns));
 
-		//Build matrix based on input and max rows/columns
+		//Build matrix based on input
 		for (int i = 0; i < _rows; i++)
 		{
-			for (int j = 0;j < _columns;j++)
+			for (int j = 0; j < _columns; j++)
 			{
 				if (j < a[i].size())
 				{
@@ -88,7 +88,33 @@ public:
 		}
 	}
 
-	//can multiply
+	//multiply (operator overloading)
+	friend Matrix operator * (Matrix& a, Matrix& b)
+	{
+		if (canMultiply(a, b))
+		{
+			Matrix<T> newMatrix = std::vector<std::vector<T>>(a.rowCount(), std::vector<T>(b.colCount()));;
+			for (int col = 0; col < newMatrix.colCount(); col++)
+			{
+				for (int row = 0; row < newMatrix.rowCount(); row++)
+				{
+					int bRow = 0;
+					for (int aCol = 0; aCol < a.colCount(); aCol++)
+					{
+						newMatrix.setElement(row, col, newMatrix.getElement(row, col) + (a.getElement(row, aCol) * b.getElement(bRow, col)));
+						bRow++;
+					}
+				}
+			}
+			return newMatrix;
+		}
+		else
+		{
+			return Matrix();
+		}
+	}
+
+	//can X
 	static bool canMultiply(Matrix a, Matrix b)
 	{
 		return a.colCount() == b.rowCount();

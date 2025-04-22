@@ -52,7 +52,55 @@ void addition()
 	std::cout << std::endl << std::endl;
 }
 
+void mutiplication()
+{
+	std::vector<std::vector<double>> A{ {2, 1, 2}, { 0, 2, 2 }, { 2, 0, 0 } };	//3x3
+	std::vector<std::vector<double>> B{ {1, 4}, { 1, 1, 8 }, { 16, 1 } };	//3*3
+	//add
+	auto a = Matrix<double>(A);
+	auto b = Matrix<double>(B);
+
+	Matrix<double> x = a * b;
+
+	std::cout << "X = A * B" << std::endl;
+
+	std::cout << "A" << std::endl;
+	for (auto&& i : a.getVector())
+	{
+		for (auto&& j : i)
+		{
+			std::cout << j << '\t';
+		}
+		std::cout << std::endl;
+	}
+	std::cout << std::endl << std::endl;
+
+	std::cout << "B" << std::endl;
+	for (auto&& i : b.getVector())
+	{
+		for (auto&& j : i)
+		{
+			std::cout << j << '\t';
+		}
+		std::cout << std::endl;
+	}
+	std::cout << std::endl << std::endl;
+
+
+	std::cout << "X" << std::endl;
+	for (auto&& i : x.getVector())
+	{
+		for (auto&& j : i)
+		{
+			std::cout << j << '\t';
+		}
+		std::cout << std::endl;
+	}
+	std::cout << std::endl << std::endl;
+}
+
 int main()
 {
 	addition();
+	mutiplication();
 }
