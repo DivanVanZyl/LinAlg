@@ -99,8 +99,36 @@ void mutiplication()
 	std::cout << std::endl << std::endl;
 }
 
+void isRowEchelon()
+{
+	std::vector<std::vector<double>> A{ {2, 1, 2}, { 0, 0, 0 }, { 0, 2, 2 } };	//3x3
+	//add
+	auto a = Matrix<double>(A);
+
+	std::cout << "A" << std::endl;
+	for (auto&& i : a.getVector())
+	{
+		for (auto&& j : i)
+		{
+			std::cout << j << '\t';
+		}
+		std::cout << std::endl;
+	}
+	std::cout << std::endl << std::endl;
+
+	if (a.isRowEchelon())
+	{
+		std::cout << "Is row echelon form";
+	}
+	else
+	{
+	std::cout << "Is not row echelon form";
+	}
+}
+
 int main()
 {
-	addition();
-	mutiplication();
+	//addition();
+	//mutiplication();
+	isRowEchelon();
 }

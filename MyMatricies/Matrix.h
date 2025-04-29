@@ -1,5 +1,7 @@
 #pragma once
 #include<vector>
+#include <limits>
+
 template<typename T>
 class Matrix
 {
@@ -8,6 +10,11 @@ class Matrix
 	int _columns;
 
 public:
+	bool empty()
+	{
+		return _rows + _columns == 0;
+	}
+
 	Matrix()
 	{
 		_m = { {} };
@@ -17,6 +24,8 @@ public:
 
 	Matrix(std::vector<std::vector<T>> a)
 	{
+		_rows = 0;
+		_columns = 0;
 		//Determine max rows/columns
 		int tmpCol = 0;
 		for (auto&& i : a)
@@ -124,4 +133,38 @@ public:
 	{
 		return a.colCount() == b.colCount() and a.rowCount() == b.rowCount();
 	}
+
+	bool isRowEchelon()
+	{
+		//bool result = true;
+		bool zeroAbove = false;
+		int prevLeadingColumn = std::numeric_limits<int>::max();
+		int prevLeadingRow = std::numeric_limits<int>::max();
+		for (int c = 0; c < _columns; c++)
+		{
+			zeroAbove = false;
+			for (int r = 0; r < _rows; r++)
+			{
+				if (_m[r][c] == 0 and zeroAbove == false)
+				{
+					zeroAbove = true;
+					if (c > prevLeadingColumn and r < prevLeadingRow)
+					{
+						return false;
+					}
+					else
+					{
+						prevLeadingColumn = c;
+						prevLeadingRow = r;
+					}
+				}
+				else if (_m[r][c] != 0 and zeroAbove == true)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	bool isRowReducedEchelon();
 };
